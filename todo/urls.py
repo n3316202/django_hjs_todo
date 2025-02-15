@@ -6,4 +6,5 @@ from todo import views
 #dev_2
 urlpatterns = [
     path("", views.todo_list, name="todo_list"),
+    path('post/', views.todo_post, name='todo_post'), #dev_3
 ]
