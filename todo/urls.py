@@ -7,4 +7,5 @@ from todo import views
 urlpatterns = [
     path("", views.todo_list, name="todo_list"),
     path('post/', views.todo_post, name='todo_post'), #dev_3
+    path('<int:pk>/', views.todo_detail, name='todo_detail'), #dev_4
 ]

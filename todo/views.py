@@ -21,3 +21,7 @@ def todo_post(request):
         form = TodoForm()
 
     return render(request, 'todo/todo_post.html', {'form': form})
+#dev_4
+def todo_detail(request, pk):
+    todo = Todo.objects.get(id=pk)
+    return render(request, 'todo/todo_detail.html', {'todo': todo})
