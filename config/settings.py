@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "todo",
     "django_bootstrap5",
+    "drf_todo", #dev_drf_todo_1
+    "rest_framework", #dev_drf_todo_1
 ]
 
 MIDDLEWARE = [
