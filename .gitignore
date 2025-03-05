@@ -1,4 +1,8 @@
 .idea
 db.sqlite3
 *.pyc
-__pycache__
+*.log
+*.pot
+__pycache__/
+db.sqlite3-journal media
+local_settings.py
