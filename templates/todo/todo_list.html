@@ -1,5 +1,5 @@
+{# djlint:off H030,H031,T001,H005,H029,H025,H021 #}
 <html>
-
   <head>
     <title>TODO 목록 앱</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
@@ -12,7 +12,8 @@
       <p>
         <a href="{% url 'todo_post' %}">
           <i class="bi-plus"></i>Add Todo</a>
-        <a href="" class="btn btn-primary" style="float:right">완료한 TODO 목록</a>
+          {% comment %} dev_6 {% endcomment %}
+        <a href="{% url 'done_list' %}" class="btn btn-primary" style="float:right">완료한 TODO 목록</a>
       </p>
       <ul class="list-group">
         {% for todo in todos %}
@@ -23,9 +24,10 @@
               <span class="badge badge-danger">!</span>
             {% endif %}
             <div style="float:right">
-              <a href="" class="btn btn-danger">완료</a>
-              {% comment %} dev_5 {% endcomment %}
+              {% comment %} #dev_6 {% endcomment %}
+              <a href="{% url 'todo_done' pk=todo.pk %}" class="btn btn-danger">완료</a>
               <a href="{% url 'todo_edit' pk=todo.pk %}" class="btn btn-outline-primary">수정하기</a>
+              
             </div>
           </li>
         {% endfor %}

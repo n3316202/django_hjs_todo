@@ -3,30 +3,35 @@ from django.shortcuts import redirect, render
 from todo.forms import TodoForm
 from todo.models import Todo
 
-# Create your views here.
-def todo_list(request): #dev_2
-    todos = Todo.objects.filter(complete=False)
-    return render(request, "todo/todo_list.html",{"todos": todos})
 
-#dev_3
+# Create your views here.
+def todo_list(request):  # dev_2
+    todos = Todo.objects.filter(complete=False)
+    return render(request, "todo/todo_list.html", {"todos": todos})
+
+
+# dev_3
 def todo_post(request):
-    
+
     if request.method == "POST":
         form = TodoForm(request.POST)
         if form.is_valid():
             todo = form.save(commit=False)
             todo.save()
-            return redirect('todo_list')
+            return redirect("todo_list")
     else:
         form = TodoForm()
 
-    return render(request, 'todo/todo_post.html', {'form': form})
-#dev_4
+    return render(request, "todo/todo_post.html", {"form": form})
+
+
+# dev_4
 def todo_detail(request, pk):
     todo = Todo.objects.get(id=pk)
-    return render(request, 'todo/todo_detail.html', {'todo': todo})
+    return render(request, "todo/todo_detail.html", {"todo": todo})
 
-#dev_5
+
+# dev_5
 def todo_edit(request, pk):
     todo = Todo.objects.get(id=pk)
     if request.method == "POST":
@@ -34,7 +39,20 @@ def todo_edit(request, pk):
         if form.is_valid():
             todo = form.save(commit=False)
             todo.save()
-            return redirect('todo_list')
+            return redirect("todo_list")
     else:
         form = TodoForm(instance=todo)
-    return render(request, 'todo/todo_post.html', {'form': form})
+    return render(request, "todo/todo_post.html", {"form": form})
+
+
+# dev_6
+def done_list(request):
+    dones = Todo.objects.filter(complete=True)
+    return render(request, "todo/done_list.html", {"dones": dones})
+
+
+def todo_done(request, pk):
+    todo = Todo.objects.get(id=pk)
+    todo.complete = True
+    todo.save()
+    return redirect("todo_list")
